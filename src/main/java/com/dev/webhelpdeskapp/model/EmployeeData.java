@@ -21,9 +21,9 @@ public class EmployeeData {
     @Column(name = "last_name", length = 50, nullable = false)
     private String employeeLastName;
 
-    @Column(name = "department" ,length = 50, nullable = false)
-    private String employeeDepartment;
-
+    @ManyToOne
+    @JoinColumn(name = "department", nullable = false, insertable = false, updatable = false)
+    private DepartmentData employeeDepartment;
 
     public Integer getId() {
         return id;
@@ -65,11 +65,11 @@ public class EmployeeData {
         this.employeeLastName = employeeLastName;
     }
 
-    public String getEmployeeDepartment() {
+    public DepartmentData getEmployeeDepartment() {
         return employeeDepartment;
     }
 
-    public void setEmployeeDepartment(String employeeDepartment) {
+    public void setEmployeeDepartment(DepartmentData employeeDepartment) {
         this.employeeDepartment = employeeDepartment;
     }
 
@@ -85,7 +85,8 @@ public class EmployeeData {
                 '}';
     }
 
-    public EmployeeData(Integer id, int employeeNumber, String employeeFirstName, String employeeMiddleName, String employeeLastName, String employeeDepartment) {
+    public EmployeeData(Integer id, int employeeNumber, String employeeFirstName, String employeeMiddleName,
+            String employeeLastName, DepartmentData employeeDepartment) {
         this.id = id;
         this.employeeNumber = employeeNumber;
         this.employeeFirstName = employeeFirstName;
@@ -94,7 +95,7 @@ public class EmployeeData {
         this.employeeDepartment = employeeDepartment;
     }
 
-    public EmployeeData(){
+    public EmployeeData() {
 
     }
 }
